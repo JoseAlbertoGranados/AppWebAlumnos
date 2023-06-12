@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie-edge">
+	<title>Sistema ITCG - Actividades Extraescolares</title>
+	<!--  BOOTSTRAP  -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+<!-- links para exportar a excel -->
+    <script src="https://unpkg.com/xlsx@0.16.9/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/file-saverjs@latest/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/tableexport@latest/dist/js/tableexport.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css">
+
+
+
+<!-- FOONT AWESOME -->
+<script src="https://kit.fontawesome.com/9584a3d4cd.js" crossorigin="anonymous"></script>
+<style type="text/css">
+	.barra{
+		display: block;
+		padding: 15px 15px 15px 20px;
+	color: white;
+	
+	text-decoration: none;
+	}
+	a.barra:hover {color:yellow;}
+
+
+
+.contenedor{
+	width: 100vw;
+	display: flex;
+}
+
+.cabecera{
+	background-color: #3BA6F7;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+ul{
+	list-style: none;
+}
+
+ul li{
+	margin: 10px 10px;
+	max-width: 12rem;
+	width: 12rem;
+}
+
+ul li:hover{
+	background-color: #9FDEDC;
+
+}
+
+
+ul li a{
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	color: #4F3A3D;
+	width: 12rem;
+	max-width: 12rem;
+}
+
+@media(max-width: 980px){
+	.lista-alumno{
+		overflow: auto;
+	}
+
+
+}
+
+
+@media(min-width: 1024px) {
+	
+
+	.menu-cont{
+		max-width: 16rem;
+		width: 16rem; 
+		margin-left: -150px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.tablas{
+		margin-left: -150px;
+	}
+
+	.registro{
+		width: 20rem;
+		margin-left: -125px;
+		justify-content: center;
+		align-items: center;
+	}
+
+
+
+	
+
+}
+</style>
+</head>
+<body>
+<% if(login) { %>
+	<nav class="contenedor">
+		<div class="cabecera">
+			<a href="menuInicio" class="navbar-brand"> <img src="resources/logo.png"> </a>
+			<a class="barra" href="menuInicio">Menú Principal <i class="fa-solid fa-house"></i> </a>
+			<a class="barra" href="salidaJefe">Cerrar Sesión <i class="fa-solid fa-right-from-bracket"></i></a>
+		</div>
+		
+	</nav>
+
+
+    
+<style type="text/css">
+    .boton {
+  list-style: none;
+  color: green;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0.5em 1.2em;
+  background: white;
+  border: 2px solid;
+  border-color: #318aac;
+  transition: all 1s ease;
+  
+}
+.boton:hover {
+  background: #318aac;
+  color: #fff !important;
+}
+    
+    
+
+    
+</style>
+
+
+<div class="container p-4">
+	<div class="row">
+		<div class = "col-md-4">
+
+			
+
+			<div class="card card-body registrar">
+				
+
+				<form action="saveAlumno" method="post" id="formulario">
+					<div class="form-group">
+						<label>Escriba el número de control:</label>
+						<input type="number" name="numero" class="form-control" placeholder="Número Control" autofocus="" id="numero" required>
+						<strong></strong>
+					</div>
+					
+
+					
+
+					<div class="form-group">
+						<label>Escriba el nombre de alumno:</label>
+						<input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre Alumno" autofocus="" required>
+						<strong></strong>
+					</div>
+					
+
+					
+
+					<div class="form-group">
+						<label>Apellido Paterno</label>
+						<input type="text" required id="paterno" name="paterno" class="form-control" placeholder="Apellido Paterno" autofocus="">
+					</div>
+					<br>
+
+					
+
+					<div class="form-group">
+						<label> Apellido Materno</label>
+						<input type="text" required id="materno" name="materno" class="form-control" placeholder="Apellido Materno" autofocus="">
+					</div>
+					
+					<br>
+
+					<label>Correo</label>
+
+					<div class="form-group">
+						<input type="email" name="email" id="email" class="form-control" placeholder="Correo" autofocus=""  required>
+						<strong></strong>
+					</div>
+					
+					
+
+
+
+					<label>Telefono</label>
+
+					<div class="form-group">
+						<input type="text" id="telefono" name="telefono" class="form-control" placeholder="Telefono" autofocus="">
+					</div>
+					
+					<br>
+
+
+			<p>Seleccione su carrera: </p>		
+         <div class="form-group">
+             <select name="carrera" id="carrera" required="" >
+      <option></option>
+         <option>Arquitectura</option>
+      <option>Contador Público</option>
+      <option>Licenciatura en Administración</option>
+       <option>Ingeniería en TICS</option>
+       <option>Ingeniería en Gestión Empresarial</option>
+         <option>Ingeniería en Sistemas Computacionales</option> 
+         <option>Ingeniería Electromecánica</option>
+      </select>
+         </div>
+<br>
+<p> Semestre: </p>
+         <div class="form-group">
+             <select name="semestre" id="semestre" required>
+      <option></option>
+         <option>1</option>
+         <option>2</option>
+         <option>3</option>
+         <option>4</option>
+         <option>5</option>
+         <option>6</option>
+         <option>7</option>
+         <option>8</option>
+         <option>9</option>
+         <option>10</option>
+         <option>11</option>
+         <option>12</option>
+      </select>
+         </div>
+         <br>
+         <p>Actividad Extraescolar: </p>
+         <div class="form-group">
+             <select name="actividad" id="actividad" required>
+         <option></option>
+         
+          
+        <% if(resultados){ resultados.forEach( (promotor) => { %>
+         <option value="<%= promotor.idPromotor %>"><%= promotor.idActivi %> - Impartida por - <%= promotor.nombrePromotor %> - <%= promotor.apellidoPaterno %></option>
+
+         <% }) %>
+       </select>
+         </div>
+         <br>
+
+					<input type="submit" class="btn btn-success btn-block" name="enviar" value="Registrar">
+				</form>
+			</div>
+
+
+		</div>
+
+		<div class="col-md-8 lista-alumno">
+			<table class="table table-bordered tablas">
+				<thead>
+				<tr>
+					<th>Número Control</th>
+					<th>Nombre Alumno</th>
+					<th>Apellido Paterno</th>
+					<th>Apellido Materno</th>
+					<th>Carrera</th>
+					<th>Email</th>
+					<th>Telefono</th>
+					<th>Semestre</th>
+					
+					<th>Actividad</th>
+					
+					
+
+				</tr>
+				</thead>
+
+				<tbody>				
+                        <% listaAlumnos.forEach( (alumno) => { %>
+							<tr>
+								<td><%= alumno.nc %> </td>
+									<td><%= alumno.nombre %> </td>
+									<td><%= alumno.apellidoPaterno %></td>
+									<td><%= alumno.apellidoMaterno %></td>
+									<td><%= alumno.carrera %></td>
+									<td><%= alumno.email %></td>
+									<td><%= alumno.telefono %></td>
+									<td><%= alumno.semestre %></td>
+									<td><%= alumno.actividad %></td>
+									
+									<td>
+										<form action="eliminarAlumno" method="POST">
+											<input type="hidden" name="nc" value="<?php echo $row['nc'] ?>">
+											
+											<input type="submit" name="eliminar" class="btn btn-danger" value="Eliminar" onclick="return confirmacion()">
+											
+										</form>
+										
+									</td>
+									<td>
+										<form action="editarAlumno" method="POST">
+											<input type="hidden" name="nc" value="<?php echo $row['nc']?>">
+											<input type="submit" name="actualizar" value="Editar" class="btn btn-success">
+										</form>
+									</td>
+									
+								
+							</tr>
+						
+						<% }) }%>
+
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+
+</div>
+
+
+<style type="text/css">
+	@media(min-width: 1024px){
+	.registrar{
+		width: 18rem;
+		margin-left: -100px;
+		justify-content: center;
+		align-items: center;
+	}
+
+	form{
+		max-width: 17.5rem;
+
+	}
+
+	.form-group{
+		overflow: hidden;
+		max-width: 16rem;
+	}
+
+}
+
+	.form-group{
+		padding-bottom: 20px;
+	}
+
+	.form-group strong{
+		visibility: hidden;
+	}
+
+	.form-group.falla strong{
+		background-color: #F9331E;
+		color: #fff;
+		visibility: visible;
+	}
+
+	.form-group.falla input{
+		border: 2px solid;
+		border-color: #F9331E;
+	}
+
+	.form-group.ok input{
+		border: 2px solid #12D437;
+	}
+</style>
+
+<script type="text/javascript">
+
+	window.addEventListener('load', ()=> {
+    const form = document.querySelector('#formulario')
+    const numero = document.querySelector('#numero');
+    //const nombre = document.querySelector('#nombre')
+    const email = document.querySelector('#email')
+
+    //const pass = document.getElementById('pass')
+    //const passConfirma = document.getElementById('passConfirma')
+	
+	
+    
+    form.addEventListener('submit', (e) => {
+		const numeroValor = numero.value.trim()
+		//const nombreValor = nombre.value.trim()
+		const emailValor = email.value.trim()
+		//const passValor = pass.value.trim()
+        //const passConfirmaValor = passConfirma.value.trim();
+
+        if(!numeroValor){
+		e.preventDefault()
+		validaFalla(numero, "Campo Vacio")
+		console.log("Esta vacio usuario")
+		}else if(numeroValor.length !== 8){
+			e.preventDefault()
+			numero.focus()
+			validaFalla(numero, "El numero de control debe de ser de 8 digitos")
+		}else{
+			console.log("Recibido")
+			console.log(numeroValor)
+			validaOk(numero)
+		}
+		
+		
+        
+
+
+		//validando campo email
+        if(!emailValor){
+        	validaFalla(email, "Campo vacio")
+        	e.preventDefault()
+        }else if(!validaEmail(emailValor)){
+        	validaFalla(email, "Email Invalido")
+        	email.focus()
+        	e.preventDefault()
+        }else{
+        	validaOk(email)
+        }
+         
+		
+		
+    })
+
+
+	const validaFalla = (input, msj) => {
+		const formControl = input.parentElement
+		const aviso = formControl.querySelector("strong")
+
+		aviso.innerText = msj
+
+		formControl.className = "form-group falla"
+	}
+
+	const validaOk = (input) =>{
+		const formControl = input.parentElement
+
+		formControl.className = "form-group ok"
+	} 
+	
+	const validaEmail = (email) => {
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);        
+    }
+
+	})
+
+	
+</script>
+
+<!-- script para exportar a excel -->
+<script>
+    const $btnExportar = document.querySelector("#btnExportar"),
+        $tabla = document.querySelector("#tabla");
+
+    $btnExportar.addEventListener("click", function() {
+        let tableExport = new TableExport($tabla, {
+            exportButtons: false, // No queremos botones
+            filename: "Reporte de prueba", //Nombre del archivo de Excel
+            sheetname: "Reporte de prueba", //Título de la hoja
+        });
+        let datos = tableExport.getExportData();
+        let preferenciasDocumento = datos.tabla.xlsx;
+        tableExport.export2file(preferenciasDocumento.data, preferenciasDocumento.mimeType, preferenciasDocumento.filename, preferenciasDocumento.fileExtension, preferenciasDocumento.merges, preferenciasDocumento.RTL, preferenciasDocumento.sheetname);
+    });
+</script>
+
+	<!-- SCRIPTS -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	function confirmacion(){
+		var respuesta = confirm("¿Desea eliminar el registro?");
+		if(respuesta === true){
+			return true;
+		}else{
+			return false;
+		}
+	}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js"></script>
+
+<% if(typeof(alert) != "undefined") {%>
+    <script>
+        Swal.fire({
+            title: "<%= alertTitle %>",
+            text: "<%= alertMessage %>",
+            icon: "<%= alertIcon %>",
+            showConfirmButton: <%= showConfirmButton %>,
+            timer: <%= timer %>
+        }).then( () => {
+            window.location="/<%= ruta %>"
+        })
+    </script>
+
+    <% }else{
+        console.log("Sin datos de variable")
+    } %>
+
+
+
+
+<% } else { %>
+    <h2>Debe Iniciar Sesión <%= name %></h2>
+<% } %>
+</body>
+</html>

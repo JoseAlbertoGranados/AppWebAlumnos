@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<title>Inscripcion Alumnos</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://kit.fontawesome.com/9584a3d4cd.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+   <header>
+      <div class="container__header">
+         <div class="logo">
+            <a href="/">
+               <img src="resources/logo.png">
+            </a>
+         </div>
+
+         <div class="menu">
+            <nav>
+               <ul>
+                  <li><a href="horarios">Actividades</a></li>
+                  <li><a href="/">Inicio</a></li>
+               </ul>
+            </nav>
+         </div>
+         <i class="fa-solid fa-bars" id="icon_menu"></i>
+         
+      </div>
+   </header>
+
+   <main>
+      <h2 class="mt-4 text-center">Bienvenidos Alumnos</h1>
+      <h5>Por favor rellene el formulario con sus datos correspondientes, para inscribirse a una Actividad Extraescolar</h4>
+
+      <div class="cover">
+         <div class="text__information-cover">
+            <form id="formulario" class="mb-4" action="inscripcion.php" method="POST">
+               <div class="form-group">
+                  <label>Numero de control:</label>
+                  <input type="number" id="nc" name="nc" placeholder="Ingrese su número de control">
+                  <strong></strong>
+               </div>
+               <div class="form-group">
+                  <label>Nombre completo:</label>
+                     <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                     <strong></strong>                
+               </div>
+               <div class="form-group">
+                  <label>Apellido Paterno: </label>
+                     <input type="text" id="paterno" name="paterno" placeholder="Ingrese su apellido paterno">
+                     <strong></strong>                
+               </div>
+               <div class="form-group">
+                  <label>Apellido Materno: </label>
+                     <input type="text" id="materno" name="materno" placeholder="Ingrese su apellido materno">
+                     <strong></strong>                
+               </div>
+               <div class="form-group">
+                  <label>Correo:</label>
+                     <input type="email" id="email" name="email" placeholder="Ingrese su correo">
+                     <strong></strong>
+               </div>
+               <div class="form-group">
+                  <label>Genero:</label>
+                     <select name="sexo" id="sexo">
+                        <option></option>
+                        <option>Hombre</option>
+                        <option>Mujer</option>
+                     </select>
+                     <strong></strong>
+               </div>
+               
+               <div class="form-group">
+                  <label>Telefono:</label>
+                     <input type="text" name="telefono" id="telefono" placeholder="Ingrese su número de telefono">  
+                     <strong></strong>                
+               </div>
+               <div class="form-group">
+                  <label>Carrera:</label>
+                     <select name="carrera" id="carrera">
+                        <option></option>
+                        <option>Sistemas Computacionales</option>
+                     </select>   
+                     <strong></strong>               
+               </div>               
+               <div class="form-group">
+                  <label>Semestre:</label>
+                     <select name="semestre" id="semestre">
+                        <option></option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                     </select>
+                     <strong></strong>                
+               </div>
+               <div class="form-group">
+                  <label>Selecciona una actividad:</label>
+                     <select name="actividad" id="actividad">
+                        <option></option>
+                  <% if (listaPromotor){ listaPromotor.forEach( (promotor) => {  %>
+                        <option value="<%= promotor.idPromotor %> "> <%= promotor.idActivi %> - Impartida Por - <%= promotor.nombrePromotor %> </option>
+                  <% }) } %>
+                     </select>   
+                     <strong></strong>               
+               </div>
+
+               <!--Terminos -->
+               <div>
+                  <input data-bs-toggle="modal" data-bs-target="#modalAlumnos" type="button" class="btn btn-primary" value="Información de las actividades">
+               </div>
+
+               <!--Checkbox -->
+               <div class="validar" id="valida_termino">
+                  <input class="form-check-input me-2" type="checkbox" name="" id="valida">
+                  <label class="form-check-label mb-3" for="valida" style="color: #fff; font-weight: bold;">He leído la información de las actividades</label>
+                  <strong></strong>
+               </div>
+
+
+               <button name="enviar" class="btn btn-primary btn-block mb-4">Enviar</button>               
+            </form>
+         </div>
+      </div>
+
+   </main>
+
+<!-- Modal -->
+  <div class="modal fade" id="modalAlumnos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">¡Atención Alumnos!</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            
+            
+        
+        <h4>Actividad complementaria obligatoria para la obtención de un crédito en primer semestre</h4>
+        <p><i class="fa-solid fa-check-double"></i>
+            El Instituto Tecnológico de la Costa Grande a través del Departamento de Actividades Extraescolares, como parte de su formación integral de nuestros estudiantes, deberán cursar una actividad extraescolar como parte de las actividades complementarias. 
+            En las que se requiere la obtención de 5 créditos a obtener antes del sexto semestre, de los cuales dos de ellos se deben obtener cursando una actividad extraescolar. Los Lineamientos Académico Administrativos seálan que podrán obtener hasta 2 créditos con nosotros, uno por semestre.
+        </p>
+    
+        <p><i class="fa-solid fa-check-double"></i>
+            El segundo crédito deberá ser una actividad diferente a la ya cursada.
+        </p>
+    
+        <p><i class="fa-solid fa-check-double"></i>
+            Ejemplo: si cursaste una Actividad Cultural, deberá seleccionar una actividad Deportiva o Cívica y/o viceversa.
+        </p>
+    
+        <p><i class="fa-solid fa-check-double"></i>¡Ojo! Solo podrás cursar una Actividad Extraescolar por semestre</p>
+    
+    
+        <p><i class="fa-solid fa-check-double"></i>
+            Actividades Extraescolares: Deportivas, Cívicas y Culturales
+        </p>
+        
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
+</body>
+<style type="text/css">
+   *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+   }
+
+   
+
+   body  {
+    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+  background-size:cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
+}
+
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+}
+
+@keyframes slidein {
+from {background-position: top;background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+
+}
+
+
+
+
+
+   header{
+      height: 5vh;
+   }
+
+   .container__header{
+      max-width: 100%;
+      height: 100%;
+      margin: auto;
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   .logo img{
+      width: 110px;
+   }
+
+   .menu nav ul{
+      display: flex;
+   }
+
+   .menu nav ul li{
+      list-style: none;
+      padding: 0px 20px;
+   }
+
+   .menu nav ul li a{
+      font-size: 16px;
+      text-decoration: none;
+      color: #000;
+      transition: opacity 300ms;
+   }
+
+   .menu nav ul li a:hover{
+      opacity: 0.6;
+   }
+
+   #icon_menu{
+      display: none;
+   }
+
+   main{
+      max-width: 100%;
+      height: 100vh;
+      padding: 40px;
+      margin: auto;
+   }
+
+   .cover{
+      display: flex;
+      justify-content: center;
+   }
+
+   .form-group{
+      padding-bottom: 20px;
+   }
+
+   #formulario{
+      margin-top: 30px;
+      width: 400px;
+      max-width: 400px;
+      box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+   }
+
+   .form-group input, .form-group select{
+      max-width: 97%;
+      width: 97%;
+      font-size: 15px;
+      font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+      
+   }
+
+
+   .form-group label{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-weight: bold;
+      padding-bottom: 6px;
+      color: rgb(252, 252, 250);
+   }
+
+   .form-group strong{
+      visibility: hidden;
+   }
+
+   .form-group.falla strong{
+      color: #fff;
+      background-color: #E61B1B;
+      visibility: visible;
+   }
+
+   .form-group.falla input{
+      border: 2px solid #E61B1B;
+   }
+
+   .validar strong{
+      visibility: hidden;
+   }
+
+   .validar.fallacheck strong{
+      color: #fff;
+      background-color: #E61B1B;
+      visibility: visible;
+   }
+
+   .validar.fallacheck input{
+      border: 2px solid #E61B1B;
+   }
+
+   .validar.ok input{
+      border: 2px solid #19D151;
+   }
+
+   .form-group.ok input{
+      border: 2px solid #19D151;
+   }
+
+
+</style>
+
+<script type="text/javascript">
+   
+   window.addEventListener("load", () =>{
+      const form = document.querySelector("#formulario")
+      const nc = document.querySelector("#nc")
+      const nombre = document.querySelector("#nombre")
+      const paterno = document.querySelector("#paterno")
+      const materno = document.querySelector("#materno")
+      const sexo = document.querySelector("#sexo")
+      const email = document.querySelector("#email")
+      const telefono = document.querySelector("#telefono")
+      const carrera = document.querySelector("#carrera")
+      const semestre = document.querySelector("#semestre")
+      const actividad = document.querySelector("#actividad")
+      const validar = document.querySelector("#valida")
+
+
+      form.addEventListener("submit", (e)=>{
+
+         const ncValor = nc.value.trim()
+         const nombreValor = nombre.value.trim()
+         const paternoValor = paterno.value.trim()
+         const maternoValor = materno.value.trim()
+         const sexoValor = sexo.value.trim()
+         const emailValor = email.value.trim()
+         const telefonoValor = telefono.value.trim()
+         const carreraValor = carrera.value.trim()
+         const semestreValor = semestre.value.trim()
+         const actividadValor = actividad.value.trim()
+
+         if(!validar.checked){
+            validaFallaCheck(validar, "Por favor lea la información de las actividades y marque la casilla")
+            validar.focus()
+            e.preventDefault()
+         }else{
+         validaCheckOk(validar)
+         }
+
+
+
+         if(!ncValor){
+            validaFalla(nc, "El campo está vacio")
+            nc.focus()
+            e.preventDefault()
+         }else if(ncValor.length !== 8){
+            validaFalla(nc, "El numero de control debe de ser de 8 digitos")
+            nc.focus()
+            e.preventDefault()
+         }else{
+            validaOk(nc)
+         }
+
+         if(!nombreValor){
+            validaFalla(nombre, "El campo está vacio")
+            nombre.focus()
+            e.preventDefault()
+         }else{
+            validaOk(nombre)
+         }
+
+         if(!paternoValor){
+            validaFalla(paterno, "El campo está vacio")
+            paterno.focus()
+            e.preventDefault()
+         }else{
+            validaOk(paterno)
+         }
+
+         if(!maternoValor){
+            validaFalla(materno, "El campo está vacio")
+            materno.focus()
+            e.preventDefault()
+         }else{
+            validaOk(materno)
+         }
+
+         if(!sexoValor){
+            validaFalla(sexo, "Seleccione una opción")
+            sexo.focus()
+            e.preventDefault()
+         }else{
+            validaOk(sexo)
+         }
+
+         if(!telefonoValor){
+            validaFalla(telefono, "El campo está vacio")
+            telefono.focus()
+            e.preventDefault()
+         }else{
+            validaOk(telefono)
+         }
+
+         if(!emailValor){
+         validaFalla(email, "Campo vacio")
+         e.preventDefault()
+        }else if(!validaEmail(emailValor)){
+         validaFalla(email, "Email Invalido")
+         email.focus()
+         e.preventDefault()
+        }else{
+         validaOk(email)
+        }
+
+        if(!carreraValor){
+         validaFalla(carrera, "Seleccione un opción")
+         carrera.focus()
+         e.preventDefault()
+        }else{
+         validaOk(carrera)
+        }
+
+        if(!semestreValor){
+         validaFalla(semestre, "Seleccione un semestre")
+         semestre.focus()
+         e.preventDefault()
+        }else{
+         validaOk(semestre)
+        }
+
+        if(!actividadValor){
+         validaFalla(actividad, "Debe seleccionar una actividad");
+         actividad.focus()
+         e.preventDefault()
+        }else{
+         validaOk(actividad)
+        }
+
+      })
+
+      const validaFalla = (input, msj) =>{
+         const formControl = input.parentElement
+         const aviso = formControl.querySelector("strong")
+
+         aviso.innerText = msj
+
+         formControl.className = "form-group falla"
+      }
+
+      const validaFallaCheck = (input, msj) =>{
+         const formControl = input.parentElement
+         const aviso = formControl.querySelector("strong")
+
+         aviso.innerText = msj
+
+         formControl.className = "validar fallacheck"
+      }
+
+      const validaCheckOk = (input) =>{
+         const formControl = input.parentElement
+
+         formControl.className = "validar ok"
+      }
+
+
+      const validaOk = (input) =>{
+         const formControl = input.parentElement
+
+         formControl.className = "form-group ok"
+      }
+
+      const validaEmail = (email) => {
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);        
+    }
+
+
+   })
+
+
+
+</script>
+</html>
