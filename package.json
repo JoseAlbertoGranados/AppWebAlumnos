@@ -8,6 +8,9 @@
     "test": "nodemon index.js",
     "start": "node index.js"
   },
+  "engines": {
+    "node": ">=14.21.2"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
