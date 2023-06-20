@@ -42,6 +42,11 @@ app.get("/loginPromotor", (req, res) => {
   res.render("loginPromotor");
 });
 
+//Mostrar mi ejemplo
+app.get("/ejemplo", (req, res) => {
+  res.render("ejemplo");
+});
+
 app.get("/inscripcion", (req, res) => {
   conection.query("SELECT * FROM promotores", (error, resultados) => {
     if (error) {
