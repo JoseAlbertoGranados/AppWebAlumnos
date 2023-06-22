@@ -32,7 +32,7 @@
       </div>
    </header>
 
-   <main>
+   <section class="container">
 
       <form id="formulario" class="mb-4" action="inscribir" method="POST">
          <div class="form-group">
@@ -129,7 +129,7 @@
          <button name="enviar" class="btn btn-primary btn-block mb-4">Enviar</button>               
       </form>
 
-   </main>
+   </section>
 
 <!-- Modal -->
   <div class="modal fade" id="modalAlumnos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -261,12 +261,15 @@ to {background-position: -100px 0px;background-size:2750px;}
       display: none;
    }
 
-   main{
+   .container{
    position: relative;
   max-width: 700px;
   width: 100%;
- 
   padding: 25px;
+   }
+
+   #formulario{
+      margin-top: 30px;
    }
 
    .cover{
