@@ -34,7 +34,100 @@
 
    <main>
 
-      
+      <form id="formulario" class="mb-4" action="inscribir" method="POST">
+         <div class="form-group">
+            <label>Numero de control:</label>
+            <input type="number" id="nc" name="nc" placeholder="Ingrese su número de control">
+            <strong></strong>
+         </div>
+         <div class="form-group">
+            <label>Nombre completo:</label>
+               <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+               <strong></strong>                
+         </div>
+         <div class="form-group">
+            <label>Apellido Paterno: </label>
+               <input type="text" id="paterno" name="paterno" placeholder="Ingrese su apellido paterno">
+               <strong></strong>                
+         </div>
+         <div class="form-group">
+            <label>Apellido Materno: </label>
+               <input type="text" id="materno" name="materno" placeholder="Ingrese su apellido materno">
+               <strong></strong>                
+         </div>
+         <div class="form-group">
+            <label>Correo:</label>
+               <input type="email" id="email" name="email" placeholder="Ingrese su correo">
+               <strong></strong>
+         </div>
+         <div class="form-group">
+            <label>Genero:</label>
+               <select name="sexo" id="sexo">
+                  <option></option>
+                  <option>Hombre</option>
+                  <option>Mujer</option>
+               </select>
+               <strong></strong>
+         </div>
+         
+         <div class="form-group">
+            <label>Telefono:</label>
+               <input type="text" name="telefono" id="telefono" placeholder="Ingrese su número de telefono">  
+               <strong></strong>                
+         </div>
+         <div class="form-group">
+            <label>Carrera:</label>
+               <select name="carrera" id="carrera">
+                  <option></option>
+                  <option>Sistemas Computacionales</option>
+               </select>   
+               <strong></strong>               
+         </div>               
+         <div class="form-group">
+            <label>Semestre:</label>
+               <select name="semestre" id="semestre">
+                  <option></option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+               </select>
+               <strong></strong>                
+         </div>
+         <div class="form-group">
+            <label>Selecciona una actividad:</label>
+               <select name="actividad" id="actividad">
+                  <option></option>
+            <% if (listaPromotor){ listaPromotor.forEach( (promotor) => {  %>
+                  <option value="<%= promotor.idPromotor %> "> <%= promotor.idActivi %> - Impartida Por - <%= promotor.nombrePromotor %> </option>
+            <% }) } %>
+               </select>   
+               <strong></strong>               
+         </div>
+
+         <!--Terminos -->
+         <div>
+            <input data-bs-toggle="modal" data-bs-target="#modalAlumnos" type="button" class="btn btn-primary" value="Información de las actividades">
+         </div>
+
+         <!--Checkbox -->
+         <div class="validar" id="valida_termino">
+            <input class="form-check-input me-2" type="checkbox" name="" id="valida">
+            <label class="form-check-label mb-3" for="valida" style="color: #fff; font-weight: bold;">He leído la información de las actividades</label>
+            <strong></strong>
+         </div>
+
+
+         <button name="enviar" class="btn btn-primary btn-block mb-4">Enviar</button>               
+      </form>
 
    </main>
 
@@ -169,10 +262,11 @@ to {background-position: -100px 0px;background-size:2750px;}
    }
 
    main{
-      max-width: 100vh;
-      height: 100vh;
-      padding: 40px;
-      margin: auto;
+   position: relative;
+  max-width: 700px;
+  width: 100%;
+ 
+  padding: 25px;
    }
 
    .cover{
