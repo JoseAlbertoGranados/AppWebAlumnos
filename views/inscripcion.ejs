@@ -14,7 +14,7 @@
    
 
    <section class="contenedor">
-
+      <header>Incripción a una actividad extraescolar</header>
       <form id="formulario" class="mb-4" action="inscribir" method="POST">
          <div class="form-group">
             <label>Numero de control:</label>
@@ -103,6 +103,7 @@
          <div class="validar" id="valida_termino">
             <input class="form-check-input me-2" type="checkbox" name="" id="valida">
             <label class="form-check-label mb-3" for="valida" style="color: #fff; font-weight: bold;">He leído la información de las actividades</label>
+            <br>
             <strong></strong>
          </div>
 
@@ -169,6 +170,11 @@
       font-family: Arial, Helvetica, sans-serif;
    }
 
+   header{
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 2rem;
+   }
    
    body {
   min-height: 100vh;
@@ -176,7 +182,30 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgb(130, 106, 251);
+  background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+  background-size:cover;
+        -webkit-animation: slidein 100s;
+        animation: slidein 100s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+}
+
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+}
+
+@keyframes slidein {
+from {background-position: top;background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+
 }
 
 .contenedor {
@@ -196,6 +225,7 @@
 
    .form-group{
       width: 100%;
+      margin-bottom: 20px;
    }
 
    #formulario{
@@ -217,7 +247,7 @@
     font-size: 18px;
     font-weight: bold;
       padding-bottom: 6px;
-      color: rgb(252, 252, 250);
+      color: black
    }
 
    .form-group strong{
