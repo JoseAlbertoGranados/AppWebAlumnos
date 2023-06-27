@@ -14,7 +14,9 @@
    
 
    <section class="contenedor">
-      <header>Incripción a una actividad extraescolar</header>
+      <header>
+         <a href="/"> <img id="imagen" class="imagen" src="resources/encabezado.png" alt=""> </a> 
+         Incripción a una actividad extraescolar</header>
       <form id="formulario" class="mb-4" action="inscribir" method="POST">
          <div class="form-group">
             <label>Numero de control:</label>
@@ -183,12 +185,52 @@
       #inscribirse{
       margin-left: 20px;
    }
+
+    .contenedor .imagen{ 
+      height: 8vh;
+      width: 50vw;
    }
+
+   }
+
+
+   @media (max-width: 830px) {
+    .contenedor .imagen{ 
+      height: 8vh;
+      width: 80vw;
+   }
+
+   }
+
+   @media (min-width: 830px) {
+    .contenedor .imagen{ 
+      height: 10vh;
+      width: 75vw;
+   }
+
+   }
+
+   @media (min-width: 900px) {
+    .contenedor .imagen{ 
+      height: 10vh;
+      width: 60vw;
+   }
+
+   }
+
+   @media (min-width: 1130px) {
+    .contenedor .imagen{ 
+      height: 10vh;
+      width: 47vw;
+   }
+
+   }
+   
 
    header{
       text-align: center;
       font-family: 'Courier New', Courier, monospace;
-      font-size: 2rem;
+      font-size: 1.2rem;
    }
    
    body {
